@@ -2,8 +2,8 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/FileDrop"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/File Drop"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JNA"/>
-	<classpathentry kind="lib" path="E:/Projects/Programming/Java Libraries/My Libraries/Elevator.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/SeerOfSpace Libs"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

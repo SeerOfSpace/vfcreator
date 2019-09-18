@@ -2,14 +2,17 @@ package core;
 
 import gui.MainGUI;
 
+import com.seerofspace.utils.windows.Elevator;
+
 import java.awt.EventQueue;
 import java.io.File;
 
 public class Main {
 	
 	public static String path = new File("VFCreator.exe").getAbsolutePath();
+	//public static String path = new File("VFCreator.jar").getAbsolutePath();
 	
-	public static void main(String[] args) {
+	public static void main(String args[]) {
 		if(args.length == 0) {
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
@@ -29,17 +32,24 @@ public class Main {
 			} else {
 				createFolder(args[0], RenameFile.rename(args[0], "_vf"));
 			}
-		} else {
+		} else if (args.length == 2) {
 			createFolder(args[0], args[1]);
+		} else if (args.length == 3) {
+			SymLinkWrapper.createSymLink(args[0], args[1], Integer.parseInt(args[2]));
 		}
 	}
 	
-	public static void createFolder(String path1, String path2) {
-		if(new File(path1).isFile() && !new File(path2).exists()) {
-			Elevator.executeAsAdministrator("cmd.exe", "/c mklink "+"\""+path2+"\" \""+path1+"\"");
-		} else if(new File(path1).isDirectory() && !new File(path2).exists()) {
-			Elevator.executeAsAdministrator("cmd.exe", "/c mklink /D "+"\""+path2+"\" \""+path1+"\"");
+	public static void createFolder(String source, String dest) {
+		File fileSource = new File(source);
+		File fileDest = new File(dest);
+		int isDir = fileSource.isDirectory() ? 1 : 0;
+		if(fileSource.exists() && !fileDest.exists()) {
+			Elevator.executeAsAdministrator(path, addQuotes(source) + " " + addQuotes(dest) + " " + isDir);
 		}
+	}
+	
+	private static String addQuotes(String s) {
+		return "\"" + s + "\"";
 	}
 	
 	public static void updateReg() {
