@@ -11,7 +11,7 @@ public class SymLinkWrapper {
 	}
 	
 	public interface Kernel32 extends StdCallLibrary {
-	      Kernel32 INSTANCE = (Kernel32) Native.loadLibrary("kernel32", Kernel32.class);
+	      Kernel32 INSTANCE = (Kernel32) Native.load("kernel32", Kernel32.class);
 	      boolean CreateSymbolicLinkA(String lpSymlinkFileName, String lpTargetFileName, int dwFlags);
 	}
 }
